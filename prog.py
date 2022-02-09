@@ -11,8 +11,9 @@ class Example(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.mspn = 0
         self.mll = [0, 0]
+        self.map = 0
         self.setupUi(self)
-        self.setWindowTitle("Большая задача по Maps API. Часть №3")
+        self.setWindowTitle("Большая задача по Maps API. Часть №4")
         self.map_file = "map.png"
         self.PgUp.clicked.connect(self.PgUpFunc)
         self.PgDown.clicked.connect(self.PgDownFunc)
@@ -20,7 +21,16 @@ class Example(QMainWindow, Ui_MainWindow):
         self.Down.clicked.connect(self.DownFunc)
         self.Left.clicked.connect(self.LeftFunc)
         self.Right.clicked.connect(self.RightFunc)
+        self.ChangeMap.clicked.connect(self.ChMap)
         self.pict = get_picture(address, with_label=True)
+        with open(self.map_file, "wb") as file:
+            file.write(self.pict)
+        self.pixmap = QPixmap(self.map_file)
+        self.label.setPixmap(self.pixmap)
+
+    def ChMap(self):
+        self.map = (self.map + 1) % 4
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
@@ -28,7 +38,7 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def LeftFunc(self):
         self.mll[0] -= 0.001
-        self.pict = get_picture(address, True, self.mspn, self.mll)
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
@@ -36,7 +46,7 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def RightFunc(self):
         self.mll[0] += 0.001
-        self.pict = get_picture(address, True, self.mspn, self.mll)
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
@@ -44,7 +54,7 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def UpFunc(self):
         self.mll[1] += 0.001
-        self.pict = get_picture(address, True, self.mspn, self.mll)
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
@@ -52,7 +62,7 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def DownFunc(self):
         self.mll[1] -= 0.001
-        self.pict = get_picture(address, True, self.mspn, self.mll)
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
@@ -60,7 +70,7 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def PgUpFunc(self):
         self.mspn += 0.001
-        self.pict = get_picture(address, True, self.mspn)
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
@@ -69,7 +79,7 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def PgDownFunc(self):
         self.mspn -= 0.001
-        self.pict = get_picture(address, True, self.mspn)
+        self.pict = get_picture(address, True, self.mspn, self.mll, self.map)
         with open(self.map_file, "wb") as file:
             file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)

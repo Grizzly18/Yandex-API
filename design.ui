@@ -140,6 +140,23 @@
      <string>🡱</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="ChangeMap">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>150</y>
+      <width>31</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>data/ChangeMap.png</normaloff>data/ChangeMap.png</iconset>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

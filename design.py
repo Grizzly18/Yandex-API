@@ -57,6 +57,13 @@ class Ui_MainWindow(object):
         self.Up = QtWidgets.QPushButton(self.centralwidget)
         self.Up.setGeometry(QtCore.QRect(770, 80, 31, 28))
         self.Up.setObjectName("Up")
+        self.ChangeMap = QtWidgets.QPushButton(self.centralwidget)
+        self.ChangeMap.setGeometry(QtCore.QRect(810, 150, 31, 28))
+        self.ChangeMap.setText("")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("data/ChangeMap.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ChangeMap.setIcon(icon2)
+        self.ChangeMap.setObjectName("ChangeMap")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
