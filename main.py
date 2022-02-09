@@ -19,8 +19,10 @@ def get_picture(address, with_label=False):
     map_api_server = "http://static-maps.yandex.ru/1.x/"
     response = requests.get(map_api_server, params=map_params)
 
-    Image.open(BytesIO(
-        response.content)).show()
+    # Image.open(BytesIO(
+    #     response.content)).show()
+
+    return response.content
 
 
 address = " ".join(sys.argv[1:])
