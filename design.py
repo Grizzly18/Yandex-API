@@ -45,6 +45,18 @@ class Ui_MainWindow(object):
         self.PgDown.setIcon(icon1)
         self.PgDown.setIconSize(QtCore.QSize(50, 100))
         self.PgDown.setObjectName("PgDown")
+        self.Right = QtWidgets.QPushButton(self.centralwidget)
+        self.Right.setGeometry(QtCore.QRect(800, 110, 31, 28))
+        self.Right.setObjectName("Right")
+        self.Left = QtWidgets.QPushButton(self.centralwidget)
+        self.Left.setGeometry(QtCore.QRect(740, 110, 31, 28))
+        self.Left.setObjectName("Left")
+        self.Down = QtWidgets.QPushButton(self.centralwidget)
+        self.Down.setGeometry(QtCore.QRect(770, 110, 31, 28))
+        self.Down.setObjectName("Down")
+        self.Up = QtWidgets.QPushButton(self.centralwidget)
+        self.Up.setGeometry(QtCore.QRect(770, 80, 31, 28))
+        self.Up.setObjectName("Up")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -53,3 +65,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.Right.setText(_translate("MainWindow", "🡲"))
+        self.Left.setText(_translate("MainWindow", "🡰"))
+        self.Down.setText(_translate("MainWindow", "🡳"))
+        self.Up.setText(_translate("MainWindow", "🡱"))

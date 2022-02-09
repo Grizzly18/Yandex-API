@@ -5,13 +5,13 @@ from PIL import Image
 from toponym import get_ll
 
 
-def get_picture(address, with_label=False, mspn=0):
+def get_picture(address, with_label=False, mspn=0, mll=[0, 0]):
     ll_span = get_ll(address)
     if with_label:
         label = ll_span[0] + ',' + 'pm2rdl'
 
     map_params = {
-        "ll": ll_span[0],
+        "ll": f"{max(float(ll_span[0].split(',')[0]) + mll[0], 0.001)},{max(float(ll_span[0].split(',')[1]) + mll[1], 0.001)}",
         "spn": f"{max(float(ll_span[1].split(',')[0]) + mspn, 0.001)},{max(float(ll_span[1].split(',')[1]) + mspn, 0.001)}",
         "l": "sat",
         "pt": label
