@@ -42,7 +42,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="PgUp">
     <property name="geometry">
      <rect>
       <x>720</x>
@@ -65,7 +65,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="PgDown">
     <property name="geometry">
      <rect>
       <x>790</x>

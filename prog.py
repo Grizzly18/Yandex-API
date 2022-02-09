@@ -7,21 +7,42 @@ from design import Ui_MainWindow
 # .\prog.py Москва, ул. Ак. Королева, 12
 
 class Example(QMainWindow, Ui_MainWindow):
-    def __init__(self, pict):
+    def __init__(self, address):
         super().__init__()
+        self.mspn = 0
         self.setupUi(self)
-        self.setWindowTitle("Большая задача по Maps API. Часть №1")
+        self.setWindowTitle("Большая задача по Maps API. Часть №2")
         self.map_file = "map.png"
+        self.PgUp.clicked.connect(self.PgUpFunc)
+        self.PgDown.clicked.connect(self.PgDownFunc)
+        self.pict = get_picture(address, with_label=True)
         with open(self.map_file, "wb") as file:
-            file.write(pict)
+            file.write(self.pict)
+        self.pixmap = QPixmap(self.map_file)
+        self.label.setPixmap(self.pixmap)
+
+    def PgUpFunc(self):
+        self.mspn += 0.001
+        self.pict = get_picture(address, True, self.mspn)
+        with open(self.map_file, "wb") as file:
+            file.write(self.pict)
         self.pixmap = QPixmap(self.map_file)
         self.label.setPixmap(self.pixmap)
 
 
+    def PgDownFunc(self):
+        self.mspn -= 0.001
+        self.pict = get_picture(address, True, self.mspn)
+        with open(self.map_file, "wb") as file:
+            file.write(self.pict)
+        self.pixmap = QPixmap(self.map_file)
+        self.label.setPixmap(self.pixmap)
+
+
+
 if __name__ == '__main__':
     address = " ".join(sys.argv[1:])
-    pict = get_picture(address, with_label=True)
     app = QApplication(sys.argv)
-    ex = Example(pict)
+    ex = Example(address)
     ex.show()
     sys.exit(app.exec())
